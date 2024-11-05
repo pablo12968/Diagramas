@@ -1,0 +1,38 @@
+@startuml ventas_automoviles
+class Cliente {
+    - idCliente: int
+    - nombre: String
+    - telefono: String
+    + getIdCliente(): int
+    + getNombre(): String
+}
+
+class Automovil {
+    - idAutomovil: int
+    - marca: String
+    - modelo: String
+    - precio: double
+    + getIdAutomovil(): int
+    + getPrecio(): double
+}
+
+class Venta {
+    - idVenta: int
+    - fecha: Date
+    - idCliente: int
+    + getIdVenta(): int
+    + getFecha(): Date
+}
+
+class DetalleVenta {
+    - idDetalle: int
+    - idVenta: int
+    - idAutomovil: int
+    - cantidad: int
+    + calcularSubtotal(): double
+}
+
+Cliente "1" --> "0..*" Venta
+Venta "1" --> "0..*" DetalleVenta
+Automovil "1" --> "0..*" DetalleVenta
+@enduml

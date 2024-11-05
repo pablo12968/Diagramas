@@ -1,0 +1,43 @@
+
+@startuml gestion_pedidos
+class Cliente {
+    - idCliente: int
+    - nombre: String
+    - direccion: String
+    + getIdCliente(): int
+    + getNombre(): String
+}
+
+class Pedido {
+    - idPedido: int
+    - fecha: Date
+    - total: double
+    - idCliente: int
+    + getIdPedido(): int
+    + getFecha(): Date
+    + getTotal(): double
+}
+
+class Producto {
+    - idProducto: int
+    - nombre: String
+    - precio: double
+    + getIdProducto(): int
+    + getPrecio(): double
+}
+
+class DetallePedido {
+    - idDetalle: int
+    - idPedido: int
+    - idProducto: int
+    - cantidad: int
+    - subtotal: double
+    + calcularSubtotal(): double
+}
+
+Cliente "1" --> "0..*" Pedido
+Pedido "1" --> "0..*" DetallePedido
+Producto "1" --> "0..*" DetallePedido
+@enduml
+
+

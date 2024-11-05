@@ -1,0 +1,56 @@
+@startuml diagrama de uso
+class Usuario {
+    - idUsuario: int
+    - nombre: String
+    - correo: String
+    - rol: String
+    + getIdUsuario(): int
+    + getNombre(): String
+    + getCorreo(): String
+}
+
+class Producto {
+    - idProducto: int
+    - nombre: String
+    - descripcion: String
+    - precio: double
+    + getIdProducto(): int
+    + getNombre(): String
+    + getPrecio(): double
+}
+
+class Inventario {
+    - idInventario: int
+    - idProducto: int
+    - cantidadDisponible: int
+    + getIdInventario(): int
+    + getCantidadDisponible(): int
+    + actualizarInventario(cantidad: int): void
+}
+
+class Factura {
+    - idFactura: int
+    - fecha: Date
+    - total: double
+    - idUsuario: int
+    + getIdFactura(): int
+    + getFecha(): Date
+    + calcularTotal(): double
+}
+
+class DetalleFactura {
+    - idDetalle: int
+    - idFactura: int
+    - idProducto: int
+    - cantidad: int
+    - subtotal: double
+    + getIdDetalle(): int
+    + calcularSubtotal(): double
+}
+
+Usuario "1" --> "0..*" Factura 
+Factura "1" --> "0..*" DetalleFactura 
+Producto "1" --> "0..*" DetalleFactura 
+Producto "1" --> "1" Inventario 
+Inventario "1" --> "1" Producto 
+@enduml

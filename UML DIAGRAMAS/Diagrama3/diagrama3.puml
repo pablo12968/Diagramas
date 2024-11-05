@@ -1,0 +1,30 @@
+@startuml hotel
+class Cliente {
+    - idCliente: int
+    - nombre: String
+    - telefono: String
+    + getIdCliente(): int
+    + getNombre(): String
+}
+
+class Reserva {
+    - idReserva: int
+    - fechaInicio: Date
+    - fechaFin: Date
+    - idCliente: int
+    + getIdReserva(): int
+    + getFechaInicio(): Date
+    + getFechaFin(): Date
+}
+
+class Habitacion {
+    - idHabitacion: int
+    - tipo: String
+    - precio: double
+    + getIdHabitacion(): int
+    + getPrecio(): double
+}
+
+Cliente "1" --> "0..*" Reserva
+Reserva "1" --> "1" Habitacion
+@enduml
